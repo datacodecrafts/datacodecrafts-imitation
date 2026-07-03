@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Imitation Assignment</title>
+  <style>
+    /* ===== Page setup ===== */
+    body {
+      background-color: #f5f0dc; /* cream background the oval "floats" on */
+      font-family: Arial, Helvetica, sans-serif;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    h1 {
+      color: #444;
+      margin-bottom: 40px;
+    }
+
+    /* ===== The oval frame ===== */
+    .oval-frame {
+      position: relative;
+      width: 480px;
+      height: 340px;
+      margin: 0 auto;
+
+      /* Technique 1: clip the box into an ellipse */
+      border-radius: 50%;
+      overflow: hidden;
+
+      /* Technique 2: thin outline + soft drop shadow for depth */
+      border: 2px solid #333;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+
+      background-color: #f5f0dc;
+    }
+
+    /* The photo itself, warmed up slightly with filters to match the cream tone */
+    .oval-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+
+      /* Technique 3: filters to shift the color toward a warm cream tone */
+      filter: sepia(15%) saturate(85%) brightness(1.08) contrast(95%);
+    }
+
+    /* Technique 4: radial-gradient overlay so the photo edges melt into the
+       cream background instead of ending in a hard line */
+    .oval-frame::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(245, 240, 220, 0) 55%,
+        rgba(245, 240, 220, 0.9) 90%
+      );
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Penguins Project</h1>
+
+  <div class="oval-frame">
+    <img src="images/penguins.jpeg" alt="Emperor penguin with chicks">
+  </div>
+
+</body>
+</html>
